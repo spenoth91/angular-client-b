@@ -1,0 +1,22 @@
+<h2>Hello there, looking for movies?</h2>
+
+<div>
+  <input id="movieSearchBar" type="search" placeholder="Search...">
+</div>
+
+<p-table [value]="imdbMovies">
+<ng-template pTemplate="header"></ng-template>
+<ng-template pTemplate="body" let-movie>
+  <tr>
+    <td id="posterHolder">
+      <img src="{{movie.i.imageUrl}}" alt="poster">
+    </td>
+    <td>
+      <div>{{movie.l}}</div>
+      <div>{{movie.q}}</div>
+      <div>{{movie.s}}</div>
+      <div>{{movie.rank}}</div>
+    </td>
+  </tr>
+</ng-template>
+</p-table>
