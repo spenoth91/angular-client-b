@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { UserListComponent } from './users/components/user-list/user-list.component';
 import {TableModule} from 'primeng/table';
+import {MovieListComponent} from "./users/components/movie-list/movie-list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    UserListComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
