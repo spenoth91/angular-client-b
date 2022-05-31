@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { UserListComponent } from './users/components/user-list/user-list.component';
 import {TableModule} from 'primeng/table';
 import { LoginComponent } from './account/components/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,12 +15,13 @@ import { LoginComponent } from './account/components/login/login.component';
     UserListComponent,
     LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    TableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        TableModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
