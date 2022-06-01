@@ -14,15 +14,15 @@ import { RegisterComponent } from './account/components/register/register.compon
   declarations: [
     AppComponent,
     UserListComponent,
-    MovieListComponent
+    MovieListComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TableModule
-    LoginComponent,
-    RegisterComponent,
+    TableModule,
     ReactiveFormsModule
   ],
   providers: [],
