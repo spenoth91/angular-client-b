@@ -6,18 +6,24 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { UserListComponent } from './users/components/user-list/user-list.component';
 import {TableModule} from 'primeng/table';
+import { LoginComponent } from './account/components/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { RegisterComponent } from './account/components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    UserListComponent,
+    LoginComponent,
+    RegisterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    TableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        TableModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
