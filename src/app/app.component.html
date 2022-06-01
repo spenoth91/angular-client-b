@@ -3,6 +3,8 @@
     <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     <a class="nav-item nav-link" routerLink="/movies" routerLinkActive="active">Movies</a>
     <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+    <a *ngIf="!isLoggedIn()" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+    <a *ngIf="isLoggedIn()" class="nav-item nav-link" (click)="logout()" routerLinkActive="active">Logout</a>
   </div>
 </nav>
 <router-outlet></router-outlet>
