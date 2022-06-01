@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+}
+
+#posterHolder {
+  width: 100px;
+}
+
