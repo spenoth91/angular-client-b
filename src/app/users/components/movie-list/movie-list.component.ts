@@ -10,6 +10,7 @@ import {MovieService} from "../../services/movie.service";
 })
 export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[];
+  moviesMap: Map<string, Movie>;
   imdbMovies: any[];
   private subscription: Subscription;
 
@@ -19,15 +20,18 @@ export class MovieListComponent implements OnInit, OnDestroy {
     const movieSearchBar = (document.getElementById("movieSearchBar") as HTMLInputElement);
     movieSearchBar.onkeyup = event => {
         if (event.key == 'Enter') {
+          //this.subscription = this.movieService.getMoviesByKeywordFromImdb(movieSearchBar.value)
+            //.subscribe(data => this.imdbMovies = data["d"]);
+
           this.subscription = this.movieService.getMoviesByKeyword(movieSearchBar.value)
-            .subscribe(data => this.imdbMovies = data["d"]);
+            .subscribe(data => this.movies = data);
         }
     }
   }
 
   ngOnDestroy(): void {
-    //if (this.subscription) {
-      //this.subscription.unsubscribe();
-    //}
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
