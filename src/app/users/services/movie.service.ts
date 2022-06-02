@@ -25,8 +25,12 @@ export class MovieService {
       {headers: this.imdbHeaders});
   }
 
-  public getMoviesByKeyword(keyword: string): Observable<any[]> {
+  public getMoviesByKeywordFromImdb(keyword: string): Observable<any[]> {
     return this.http.get<any[]>(APIEndpointURLs.searchMoviesUrlEmptyKeyword + keyword,
       {headers: this.imdbHeaders});
+  }
+
+  public getMoviesByKeyword(keyword: string): Observable<Movie[]> {
+    return this.http.get<any[]>(APIEndpointURLs.keywordMoviesUrl + keyword);
   }
 }

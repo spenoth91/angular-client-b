@@ -4,14 +4,15 @@
   <input id="movieSearchBar" type="search" placeholder="Search...">
 </div>
 
-<p-table [value]="imdbMovies">
+<p-table [value]="movies">
 <ng-template pTemplate="header"></ng-template>
 <ng-template pTemplate="body" let-movie>
   <tr>
     <td id="posterHolder">
-      <img src="{{movie.i.imageUrl}}" alt="poster">
+      <img *ngIf="movie.i" src="{{movie.i.imageUrl}}" alt="poster">
     </td>
     <td>
+      <div>{{movie.title}}</div>
       <div>{{movie.l}}</div>
       <div>{{movie.q}}</div>
       <div>{{movie.s}}</div>

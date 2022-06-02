@@ -5,6 +5,9 @@ export class APIEndpointURLs {
   public static readonly userUrl = APIEndpointURLs.baseUrl + '/user';
   public static readonly allUser = APIEndpointURLs.userUrl + '/all';
 
+  // Movies
+  public static readonly keywordMoviesUrl = APIEndpointURLs.baseUrl + '/movie/k/';
+
   // Movies from Rapid API (imdb)
   public static readonly searchMoviesUrlEmptyKeyword = 'https://online-movie-database.p.rapidapi.com/auto-complete?q=';
 
