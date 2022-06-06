@@ -3,6 +3,10 @@ table {
   table-layout: fixed;
 }
 
+td {
+  padding: 8px;
+}
+
 img[src=""] {
   display: none;
 }
@@ -13,8 +17,22 @@ img {
   object-fit: cover;
 }
 
-
 #posterHolder {
   width: 100px;
+}
+
+#tableHolder {
+  margin: 32px;
+  padding: 4px;
+}
+
+#searchBarHolder {
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
 }
 

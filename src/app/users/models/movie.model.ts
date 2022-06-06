@@ -6,4 +6,8 @@ export class Movie {
   director: string;
   category: string;
   ratings: any[];
+  imageUrl: string;
+  description: string;
+  rank: number;
+  actors: string;
 }
