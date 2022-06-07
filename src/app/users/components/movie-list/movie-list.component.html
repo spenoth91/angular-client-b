@@ -20,6 +20,9 @@
           <div>{{movie.director}}</div>
           <div>{{movie.category}}</div>
           <div *ngIf="movie.rank">Rank: {{movie.rank}}</div>
+          <div *ngIf="movie.ratings">
+            <ngb-rating [max]="5" [(rate)]="movie.overallRating" [readonly]="true"></ngb-rating>
+          </div>
         </td>
       </tr>
     </ng-template>

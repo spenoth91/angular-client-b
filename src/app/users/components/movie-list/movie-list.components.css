@@ -36,3 +36,6 @@ h2 {
   justify-content: center;
 }
 
+ngb-rating {
+  color: yellow;
+}

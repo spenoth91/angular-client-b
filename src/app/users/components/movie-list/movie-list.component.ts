@@ -28,12 +28,15 @@ export class MovieListComponent implements OnInit, OnDestroy {
     movieSearchBar.onkeyup = event => {
         if (event.key == 'Enter') {
 
+          this.moviesMap.clear();
+
           this.subscription = forkJoin([
               this.movieService.getMoviesByKeyword(movieSearchBar.value),
               this.movieService.getMoviesByKeywordFromImdb(movieSearchBar.value)
             ]).subscribe(([movies, data]) => {
 
               movies.forEach(movie => {
+                this.updateOverallRating(movie);
                 this.moviesMap.set(movie.title, movie);
               });
 
@@ -47,8 +50,14 @@ export class MovieListComponent implements OnInit, OnDestroy {
               this.movies = Array.from(this.moviesMap.values());
           })
         }
-
     }
+  }
+
+  public updateOverallRating(movie: Movie): void {
+    if (movie.ratings == null || movie.ratings.length == 0) return;
+    let sum = 0;
+    movie.ratings.forEach(rating => sum += rating.value);
+    movie.overallRating = sum / movie.ratings.length;
   }
 
   private mergeToMap(movie: Movie): void {

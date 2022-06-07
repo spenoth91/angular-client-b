@@ -9,6 +9,7 @@ import { MovieListComponent } from "./users/components/movie-list/movie-list.com
 import { LoginComponent } from './account/components/login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from './account/components/register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RegisterComponent } from './account/components/register/register.compon
     AppRoutingModule,
     HttpClientModule,
     TableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
