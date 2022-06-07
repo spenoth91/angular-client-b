@@ -1,0 +1,56 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  background-color: grey;
+}
+
+tr {
+  border: 8px solid black;
+  padding-bottom: 64px;
+}
+
+img {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+#posterHolder {
+  width: 200px;
+}
+
+#tableHolder {
+  padding: 16px;
+}
+
+#searchBarHolder {
+  display: flex;
+  justify-content: center;
+  font-family: "Comic Sans MS", sans-serif;
+  padding-bottom: 48px;
+}
+
+#questionHolder {
+  overflow: auto;
+  font-family: "Comic Sans MS", sans-serif;
+  padding: 24px;
+}
+
+#pDialogRating {
+  background-color: white;
+  color: black;
+}
+
+.pDialogDiv {
+  background-color: lightgray;
+  color: black;
+  padding: 8px;
+}

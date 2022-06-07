@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~primeng/resources/themes/nova/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeicons/primeicons.css";
+
+html, .bg-black {
+  background-color: black;
+}
+
+div {
+  color: white;
+}

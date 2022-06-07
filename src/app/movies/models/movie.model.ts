@@ -1,3 +1,5 @@
+import {Rating} from "./rating.model";
+
 export class Movie {
   id: number;
   title: string;
@@ -5,9 +7,11 @@ export class Movie {
   year: number;
   director: string;
   category: string;
-  ratings: any[];
+  ratings: Rating[];
+  overallRating: number|null;
   imageUrl: string;
   description: string;
   rank: number;
   actors: string;
+  fromImdb: boolean = false;
 }
