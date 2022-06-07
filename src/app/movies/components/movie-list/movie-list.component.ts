@@ -12,7 +12,9 @@ import { forkJoin } from 'rxjs';
 export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[];
   moviesMap: Map<string, Movie>;
-  imdbMovies: any[];
+  isDialogVisible = false;
+  movieNames = [];
+  selectedMovieName = "";
   private subscription: Subscription;
   private imdbSubscription: Subscription;
 
@@ -43,27 +45,49 @@ export class MovieListComponent implements OnInit, OnDestroy {
               if (data['d']) {
                 data['d'].forEach(imdbMovie => {
                   const movie = MovieListComponent.convertImdbMovieToModel(imdbMovie);
-                  this.moviesMap.set(movie.title, movie);
+                  movie.fromImdb = true;
+                  this.mergeToMap(movie);
                 });
               }
 
               this.movies = Array.from(this.moviesMap.values());
+              this.movieNames = Array.from(this.moviesMap.keys());
           })
         }
     }
   }
 
+  public saveRating() {
+    if (this.selectedMovieName.length > 0) {
+      /// save rating
+    }
+  }
+
+  public popUpDialog(title: string) {
+    this.selectedMovieName = title;
+    this.isDialogVisible = true;
+  }
+
   public updateOverallRating(movie: Movie): void {
-    if (movie.ratings == null || movie.ratings.length == 0) return;
+    if (movie.ratings.length === 0) return;
     let sum = 0;
     movie.ratings.forEach(rating => sum += rating.value);
     movie.overallRating = sum / movie.ratings.length;
   }
 
   private mergeToMap(movie: Movie): void {
-    if (this.moviesMap[movie.title]) {
-      /// TODO: make movies merge
-
+    if (this.moviesMap.has(movie.title)) {
+      let temp = this.moviesMap.get(movie.title);
+      if (!temp.duration) temp.duration = movie.duration;
+      if (!temp.year) temp.year = movie.year;
+      if (!temp.director) temp.director = movie.director;
+      if (!temp.category) temp.category = movie.category;
+      if (!temp.ratings) temp.ratings = movie.ratings;
+      if (!temp.imageUrl) temp.imageUrl = movie.imageUrl;
+      if (!temp.description) temp.description = movie.description;
+      if (!temp.rank) temp.rank = movie.rank;
+      if (!temp.actors) temp.actors = movie.actors;
+      this.moviesMap.set(movie.title, temp);
       return;
     }
     this.moviesMap.set(movie.title, movie);

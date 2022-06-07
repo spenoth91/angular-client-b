@@ -1,0 +1,49 @@
+<div class="bg-black" id="questionHolder"><h2>Looking for movies?</h2></div>
+<div class="bg-black" id="searchBarHolder">
+  <input id="movieSearchBar" type="search" placeholder="Search...">
+</div>
+
+<div class="bg-black" id="tableHolder">
+  <p-table [value]="movies">
+    <ng-template pTemplate="header"></ng-template>
+    <ng-template pTemplate="body" let-movie>
+      <tr>
+        <td id="posterHolder">
+          <img *ngIf="movie.imageUrl" src="{{movie.imageUrl}}" alt="poster">
+        </td>
+        <td>
+          <h4>{{movie.title}}</h4>
+          <div>{{movie.description}}</div>
+          <div *ngIf="movie.duration">Duration: {{movie.duration}} hours</div>
+          <div *ngIf="movie.year">Year: {{movie.year}}</div>
+          <div *ngIf="movie.director">Director: {{movie.director}}</div>
+          <div *ngIf="movie.actors">Featured actors: {{movie.actors}}</div>
+          <div *ngIf="movie.category">Category: {{movie.category}}</div>
+          <div *ngIf="movie.rank">Rank: {{movie.rank}}</div>
+          <div *ngIf="movie.overallRating">
+            <ngb-rating [max]="5" [(rate)]="movie.overallRating" [readonly]="true"></ngb-rating>
+          </div>
+          <div>
+            <p-button label="Rate" (click)="popUpDialog(movie.title)"></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Give a review"
+          [closable]="true"
+          [style]="{
+                      'background-color':'lightgray',
+                      'padding':'16px',
+                      'border':'4px solid black',
+                      'color':'black'
+                      }"
+          position="center" [(visible)]="isDialogVisible">
+  <p class="pDialogDiv">Angular PrimeNG Dialog</p>
+  <p class="pDialogDiv">Rate {{selectedMovieName}}</p>
+  <ngb-rating [max]="5" [readonly]="false"></ngb-rating>
+  <p-button label="Save" (click)="saveRating()"></p-button>
+</p-dialog>
+

@@ -6,7 +6,14 @@ export class APIEndpointURLs {
   public static readonly allUser = APIEndpointURLs.userUrl + '/all';
 
   // Movies
-  public static readonly keywordMoviesUrl = APIEndpointURLs.baseUrl + '/movie/k/';
+  public static readonly movieUrl = APIEndpointURLs.baseUrl + '/movie';
+  public static readonly keywordMoviesUrl = APIEndpointURLs.movieUrl + '/k/';
+  public static readonly saveMovie = APIEndpointURLs.baseUrl + '/save';
+
+  // Ratings
+  public static readonly ratingUrl = APIEndpointURLs.baseUrl + '/rating';
+  public static readonly saveRating = APIEndpointURLs.ratingUrl + '/save';
+  public static readonly updateRating = APIEndpointURLs.ratingUrl + '/update';
 
   // Movies from Rapid API (imdb)
   public static readonly searchMoviesUrlEmptyKeyword = 'https://online-movie-database.p.rapidapi.com/auto-complete?q=';

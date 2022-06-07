@@ -13,4 +13,5 @@ export class Movie {
   description: string;
   rank: number;
   actors: string;
+  fromImdb: boolean = false;
 }
