@@ -54,3 +54,9 @@ h2 {
   color: black;
   padding: 8px;
 }
+
+.row {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
