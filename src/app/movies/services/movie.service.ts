@@ -33,4 +33,8 @@ export class MovieService {
   public getMoviesByKeyword(keyword: string): Observable<Movie[]> {
     return this.http.get<any[]>(APIEndpointURLs.keywordMoviesUrl + keyword);
   }
+
+  public getFeaturedMovies() {
+    return this.http.get<Movie[]>(APIEndpointURLs.featuredMoviesUrl);
+  }
 }

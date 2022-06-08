@@ -11,6 +11,7 @@ import { forkJoin } from 'rxjs';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[];
+  featuredMovies: Movie[];
   moviesMap: Map<string, Movie>;
   isDialogVisible = false;
   movieNames = [];
@@ -24,6 +25,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
     // initial variables
     this.moviesMap = new Map<string, Movie>();
     this.movies = [];
+    this.movieService.getFeaturedMovies().subscribe(movies => this.featuredMovies = movies);
+
     const movieSearchBar = (document.getElementById("movieSearchBar") as HTMLInputElement);
 
     // key event on search bar
