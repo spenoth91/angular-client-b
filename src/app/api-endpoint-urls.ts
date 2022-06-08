@@ -8,7 +8,7 @@ export class APIEndpointURLs {
   // Movies
   public static readonly movieUrl = APIEndpointURLs.baseUrl + '/movie';
   public static readonly keywordMoviesUrl = APIEndpointURLs.movieUrl + '/k/';
-  public static readonly saveMovie = APIEndpointURLs.baseUrl + '/save';
+  public static readonly saveMovie = APIEndpointURLs.movieUrl + '/save';
 
   // Ratings
   public static readonly ratingUrl = APIEndpointURLs.baseUrl + '/rating';

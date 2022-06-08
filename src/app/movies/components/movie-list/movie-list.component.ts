@@ -3,6 +3,10 @@ import {Movie} from "../../models/movie.model";
 import {Observable, Subscription} from "rxjs";
 import {MovieService} from "../../services/movie.service";
 import { forkJoin } from 'rxjs';
+import {RatingService} from "../../services/rating.service";
+import {RatingSaveTO} from "../../models/rating-save-to";
+import {NgbRating} from "@ng-bootstrap/ng-bootstrap";
+import {MovieSaveTO} from "../../models/movie-save-to";
 
 @Component({
   selector: 'app-movie-list',
@@ -15,10 +19,15 @@ export class MovieListComponent implements OnInit, OnDestroy {
   isDialogVisible = false;
   movieNames = [];
   selectedMovieName = "";
+  rate: number = 0;
+  movieAndRate: Observable<{}>;
   private subscription: Subscription;
   private imdbSubscription: Subscription;
+  private ratingSubscription: Subscription;
+  private movieSubscription: Subscription;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService,
+              private ratingService: RatingService) { }
 
   ngOnInit(): void {
     // initial variables
@@ -59,7 +68,35 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   public saveRating() {
     if (this.selectedMovieName.length > 0) {
-      /// save rating
+      let movie = this.moviesMap.get(this.selectedMovieName);
+      let ratingSaveTO = new RatingSaveTO();
+      ratingSaveTO.movieId = movie.id;
+      ratingSaveTO.value = this.rate;
+      ratingSaveTO.comment = (document.getElementById("movieSearchBar") as HTMLInputElement).value;
+
+      // if not in our database then save the movie and the rating
+      if (movie.fromImdb  && !movie.id) {
+        console.log("new movie + rating");
+        let movieSaveTO = new MovieSaveTO();
+        movieSaveTO.title = movie.title;
+        movieSaveTO.duration = 2; // default value
+        movieSaveTO.year = 2010; // default value
+        movieSaveTO.director = "Sanyi bácsi"; // default value
+        movieSaveTO.category = "unlisted";
+
+
+        this.movieSubscription = this.movieService.saveMovie(movieSaveTO).subscribe(
+          a => {
+            /// to be finished
+            this.ratingSubscription = this.ratingService.saveRating(ratingSaveTO).subscribe();
+          }
+        );
+      }
+      // else update only the rating
+      else {
+        console.log("update rating");
+        this.ratingSubscription = this.ratingService.updateRating(ratingSaveTO).subscribe();
+      }
     }
   }
 
@@ -87,6 +124,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
       if (!temp.description) temp.description = movie.description;
       if (!temp.rank) temp.rank = movie.rank;
       if (!temp.actors) temp.actors = movie.actors;
+      if (!temp.fromImdb) temp.fromImdb = movie.fromImdb;
       this.moviesMap.set(movie.title, temp);
       return;
     }
@@ -108,8 +146,14 @@ export class MovieListComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    if (this.imdbSubscription){
+    if (this.imdbSubscription) {
       this.imdbSubscription.unsubscribe();
+    }
+    if (this.ratingSubscription) {
+      this.ratingSubscription.unsubscribe();
+    }
+    if (this.movieSubscription) {
+      this.movieSubscription.unsubscribe();
     }
   }
 }

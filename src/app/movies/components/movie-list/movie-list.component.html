@@ -43,7 +43,12 @@
           position="center" [(visible)]="isDialogVisible">
   <p class="pDialogDiv">Angular PrimeNG Dialog</p>
   <p class="pDialogDiv">Rate {{selectedMovieName}}</p>
-  <ngb-rating [max]="5" [readonly]="false"></ngb-rating>
-  <p-button label="Save" (click)="saveRating()"></p-button>
+  <ngb-rating id="dialogRating" [(rate)]="rate" [max]="5" [readonly]="false"></ngb-rating>
+  <div>
+    <input id="comment" type="text" placeholder="Comment...">
+  </div>
+  <div>
+    <p-button label="Save" (click)="saveRating()"></p-button>
+  </div>
 </p-dialog>
 
